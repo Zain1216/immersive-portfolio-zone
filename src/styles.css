@@ -133,3 +133,54 @@
 @utility animate-spin-slow {
   animation: spin-slow 18s linear infinite;
 }
+
+@keyframes drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(60px, 40px, 0) scale(1.12); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(-70px, -50px, 0) scale(0.92); }
+}
+@keyframes drift-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(0.95); }
+  50% { transform: translate3d(40px, -60px, 0) scale(1.1); }
+}
+@keyframes grid-scroll {
+  to { background-position: 0 80px; }
+}
+@keyframes tumble {
+  0% { transform: rotateX(0deg) rotateY(0deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.7); }
+  50% { opacity: 0.9; transform: scale(1.3); }
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility animate-drift-a { animation: drift-a 18s ease-in-out infinite; }
+@utility animate-drift-b { animation: drift-b 22s ease-in-out infinite; }
+@utility animate-drift-c { animation: drift-c 26s ease-in-out infinite; }
+@utility animate-grid-scroll { animation: grid-scroll 6s linear infinite; }
+@utility animate-tumble { animation: tumble 16s linear infinite; }
+@utility animate-tumble-slow { animation: tumble 28s linear infinite; }
+@utility animate-twinkle { animation: twinkle 4.5s ease-in-out infinite; }
+@utility animate-rise { animation: rise-in 0.7s ease-out both; }
+
+@utility grid-floor {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--primary) 22%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--primary) 22%, transparent) 1px, transparent 1px);
+  background-size: 80px 80px;
+  transform: rotateX(72deg);
+  transform-origin: bottom center;
+  mask-image: linear-gradient(to top, oklch(0 0 0) 0%, transparent 75%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
